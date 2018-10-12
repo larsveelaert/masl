@@ -324,6 +324,7 @@ func SetCredentials(assertionOutput *sts.AssumeRoleWithSAMLOutput, homeDir strin
 	profileName string, legacyToken bool, log *logrus.Logger) {
 	filename := os.Getenv("AWS_SHARED_CREDENTIALS_FILE")
 	if filename == "" {
+		_ = os.Mkdir(homeDir + string(os.PathSeparator) + ".aws", 0700)
 		filename = homeDir + string(os.PathSeparator) + ".aws" +
 			string(os.PathSeparator) + "credentials"
 	}
